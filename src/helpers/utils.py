@@ -9,8 +9,8 @@ import yaml
 import subprocess
 from datetime import datetime
 
-import context
-from subprocess_wrappers import check_call, check_output, call
+from helpers import context
+from helpers.subprocess_wrappers import check_call, check_output, call
 
 
 def get_open_port():
@@ -37,7 +37,7 @@ make_sure_dir_exists(tmp_dir)
 
 def parse_config():
     with open(path.join(context.src_dir, 'config.yml')) as config:
-        return yaml.load(config)
+        return yaml.full_load(config)
 
 
 def update_submodules():

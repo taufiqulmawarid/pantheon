@@ -2,7 +2,9 @@
 *.svg
 *.txt
 *.pdf
+*.bak
 /tmp/
+report/
 
 ##### Python
 

@@ -180,7 +180,7 @@ class Plot(object):
                 cc_id += 1
 
         for cc in self.cc_schemes:
-            for run_id in xrange(1, 1 + self.run_times):
+            for run_id in range(1, 1 + self.run_times):
                 perf_data[cc][run_id] = perf_data[cc][run_id].get()
 
                 if perf_data[cc][run_id] is None:
@@ -226,15 +226,15 @@ class Plot(object):
                 symlog = True
 
         if symlog:
-            ax.set_xscale('symlog', basex=2, linthreshx=2, linscalex=0.5)
+            ax.set_xscale('symlog', base=2, linthresh=2, linscale=0.5)
             ax.set_xlim(x_min, x_max)
             ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%d'))
 
     def plot_throughput_delay(self, data):
-        min_raw_delay = sys.maxint
-        min_mean_delay = sys.maxint
-        max_raw_delay = -sys.maxint
-        max_mean_delay = -sys.maxint
+        min_raw_delay = sys.maxsize
+        min_mean_delay = sys.maxsize
+        max_raw_delay = -sys.maxsize
+        max_mean_delay = -sys.maxsize
 
         fig_raw, ax_raw = plt.subplots()
         fig_mean, ax_mean = plt.subplots()
@@ -249,7 +249,7 @@ class Plot(object):
             cc_name = schemes_config[cc]['name']
             color = schemes_config[cc]['color']
             marker = schemes_config[cc]['marker']
-            y_data, x_data = zip(*value)
+            y_data, x_data = list(zip(*value))
 
             # update min and max raw delay
             min_raw_delay = min(min(x_data), min_raw_delay)
