@@ -67,3 +67,27 @@ schemes:
     name: FillP-Sheep
     color: violet
     marker: 'D'
+  aurora:
+    name: Aurora
+    color: blue
+    marker: 'P'
+  aurora_no_clip:
+    name: Aurora-NoClip
+    color: green
+    marker: 'D'
+  aurora_no_scale:
+    name: Aurora-NoScale
+    color: red
+    marker: 'D'
+  aurora_annealing_lr:
+    name: Aurora-Annealing-LR
+    color: orange
+    marker: 'D'
+  aurora_xavier_init:
+    name: Aurora-Xavier
+    color: brown
+    marker: 'D'
+  drl_trpo:
+    name: TRPO
+    color: violet
+    marker: 'D'

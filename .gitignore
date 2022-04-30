@@ -5,6 +5,7 @@
 *.bak
 /tmp/
 report/
+reports/
 
 ##### Python
 
