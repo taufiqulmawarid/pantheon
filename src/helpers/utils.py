@@ -117,14 +117,17 @@ def who_runs_first(cc):
     return run_first, run_second
 
 
-def parse_remote_path(remote_path, cc=None):
+def parse_remote_path(remote_path, remote_key=None, cc=None):
     ret = {}
 
     ret['host_addr'], ret['base_dir'] = remote_path.rsplit(':', 1)
     ret['src_dir'] = path.join(ret['base_dir'], 'src')
     ret['tmp_dir'] = path.join(ret['base_dir'], 'tmp')
     ret['ip'] = ret['host_addr'].split('@')[-1]
-    ret['ssh_cmd'] = ['ssh', ret['host_addr']]
+    if remote_key:
+        ret['ssh_cmd'] = ['ssh', '-i', remote_key, ret['host_addr']]
+    else:
+        ret['ssh_cmd'] = ['ssh', ret['host_addr']]
     ret['tunnel_manager'] = path.join(
         ret['src_dir'], 'experiments', 'tunnel_manager.py')
 
@@ -174,13 +177,13 @@ def query_clock_offset(ntp_addr, ssh_cmd):
     return local_clock_offset, remote_clock_offset
 
 
-def get_git_summary(mode='local', remote_path=None):
+def get_git_summary(mode='local', remote_path=None, remote_key=None):
     git_summary_src = path.join(context.src_dir, 'experiments',
                                 'git_summary.sh')
     local_git_summary = check_output(git_summary_src, cwd=context.base_dir)
 
     if mode == 'remote':
-        r = parse_remote_path(remote_path)
+        r = parse_remote_path(remote_path, remote_key)
 
         git_summary_src = path.join(
             r['src_dir'], 'experiments', 'git_summary.sh')

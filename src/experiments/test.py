@@ -67,12 +67,12 @@ class Test(object):
             self.remote_if = args.remote_if
             self.local_desc = args.local_desc
             self.remote_desc = args.remote_desc
+            self.remote_key = args.remote_key
 
             self.ntp_addr = args.ntp_addr
             self.local_ofst = None
             self.remote_ofst = None
-
-            self.r = utils.parse_remote_path(args.remote_path, self.cc)
+            self.r = utils.parse_remote_path(args.remote_path, args.remote_key, self.cc)
 
         # arguments when there's a config
         self.test_config = None
@@ -263,8 +263,12 @@ class Test(object):
             if self.server_side == 'local':
                 ts_manager_cmd = ['python', self.tunnel_manager]
             else:
-                ts_manager_cmd = self.r['ssh_cmd'] + [
-                    'python', self.r['tunnel_manager']]
+                # ts_manager_cmd = self.r['ssh_cmd'] + [
+                #     'python', self.r['tunnel_manager']]
+                # ts_manager_cmd = self.r['ssh_cmd'] + [
+                #     "'source", f"{self.r['base_dir']}/../venv/bin/activate", "&&",
+                #     'python', f"{self.r['tunnel_manager']}'"]
+                ts_manager_cmd = self.r['ssh_cmd'] + [ f"source {self.r['base_dir']}/../venv/bin/activate; python {self.r['tunnel_manager']}" ]
         else:
             ts_manager_cmd = ['python', self.tunnel_manager]
 
@@ -584,7 +588,7 @@ class Test(object):
         assert(self.mode == 'remote')
 
         # download logs from remote side
-        cmd = 'scp -C %s:' % self.r['host_addr']
+        cmd = 'scp -i %s -C %s:' % (self.remote_key, self.r['host_addr'])
         cmd += '%(remote_log)s %(local_log)s'
 
         # function to get a corresponding local path from a remote path
@@ -746,7 +750,8 @@ class Test(object):
 def run_tests(args):
     # check and get git summary
     git_summary = utils.get_git_summary(args.mode,
-                                        getattr(args, 'remote_path', None))
+                                        getattr(args, 'remote_path', None),
+                                        getattr(args, 'remote_key', None))
 
     # get cc_schemes
     if args.all:

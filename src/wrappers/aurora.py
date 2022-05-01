@@ -15,6 +15,7 @@ def main():
     pcc_rl_repo = '/home/haidlir/PCCProject/PCC-RL'
     pcc_uspace_repo = '/home/haidlir/PCCProject/PCC-Uspace-DL-Branch/'
     model_name = '2022-03-22-09:00'
+    # model_name = 'icml_paper_model'
     model_path = f'{pcc_rl_repo}/src/gym/pcc_saved_models/{model_name}'
     cc_repo = path.join(context.third_party_dir, 'pcc')
     recv_dir = path.join(cc_repo, 'receiver')
