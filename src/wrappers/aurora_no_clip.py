@@ -43,9 +43,10 @@ def main():
                        f' --history-len=10 --pcc-utility-calc=linear'\
                        f' --model-path="{model_path}"'
         cmd = [send_src, 'send', args.ip, args.port, rl_args]
+        cmd = ' '.join(cmd)
         # suppress debugging output to stderr
         with open(os.devnull, 'w') as devnull:
-            check_call(cmd, stderr=devnull)
+            check_call(cmd, shell=True, stderr=devnull)
         return
 
 

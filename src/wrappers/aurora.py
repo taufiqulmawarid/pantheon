@@ -38,15 +38,16 @@ def main():
         return
 
     if args.option == 'sender':
-        os.environ['LD_LIBRARY_PATH'] = path.join(pcc_uspace_repo, 'src', 'core')
+        os.environ['LD_LIBRARY_PATH'] = f'$LD_LIBRARY_PATH:{path.join(pcc_uspace_repo, "src", "core")}'
         rl_args = f'--pcc-rate-control=python -pyhelper=loaded_client'\
                        f' -pypath={pcc_rl_repo}/src/udt-plugins/testing/'\
                        f' --history-len=10 --pcc-utility-calc=linear'\
                        f' --model-path="{model_path}"'
         cmd = [send_src, 'send', args.ip, args.port, rl_args]
+        cmd = ' '.join(cmd)
         # suppress debugging output to stderr
         with open(os.devnull, 'w') as devnull:
-            check_call(cmd, stderr=devnull)
+            check_call(cmd, shell=True, stderr=devnull)
         return
 
 
