@@ -67,3 +67,7 @@ schemes:
     name: FillP-Sheep
     color: violet
     marker: 'D'
+  enhanced_aurora:
+    name: Enhanced Aurora
+    color: red
+    marker: 'A'

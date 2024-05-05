@@ -54,3 +54,7 @@
 	path = third_party/fillp-sheep
 	url = https://github.com/fillthepipe/fillp-sheep.git
 	ignore = dirty
+[submodule "third_party/enhanced-aurora"]
+	path = third_party/enhanced-aurora
+	url = https://github.com/taufiqulmawarid/quic-go-mod-drl-cc.git
+	ignore = dirty
