@@ -70,4 +70,4 @@ schemes:
   enhanced_aurora:
     name: Enhanced Aurora
     color: red
-    marker: '*'
+    marker: 'D'
