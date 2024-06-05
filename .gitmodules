@@ -58,3 +58,12 @@
 	path = third_party/enhanced-aurora
 	url = https://github.com/taufiqulmawarid/quic-go-mod-drl-cc.git
 	ignore = dirty
+[submodule "third_party/aurora-udt"]
+	path = third_party/aurora-udt
+	url = https://github.com/taufiqulmawarid/PCC-Uspace.git
+	branch = deep-learning
+	ignore = dirty
+[submodule "third_party/pcc-rl"]
+	path = third_party/pcc-rl
+	url = https://github.com/PCCproject/PCC-RL.git
+	ignore = dirty

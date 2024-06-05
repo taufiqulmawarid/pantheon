@@ -1,16 +1,28 @@
 #!/bin/bash
 
-# Check if the number of arguments is correct
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <trace_file>"
+# Check if the correct number of arguments is provided
+if [ $# -ne 5 ]; then
+    echo "Usage: $0 <schemes> <trace_file> <data_dir> <runtime> <run_times>"
     exit 1
 fi
 
-# Get the input argument
-trace_file=$1
+# Fetch the arguments
+schemes="$1"
+trace_file="$2"
+data_dir="$3"
+runtime="$4"
+run_times="$5"
 
-# Run the Python script with the additional argumentss
-python test.py local --schemes "enhanced_aurora cubic pcc" --uplink-trace "$trace_file" --downlink-trace "$trace_file" --runtime 60 && \
+# Clear the data directory
+rm -rf "$data_dir"
+
+# Run the Python script with the additional arguments
+python test.py local \
+    --schemes "$schemes" \
+    --uplink-trace "$trace_file" --downlink-trace "$trace_file" \
+    --runtime "$runtime" \
+    --run-times "$run_times" \
+    --data-dir "$data_dir" && \
 
 # Run the Python script for analysis
-python ../analysis/analyze.py
+python ../analysis/analyze.py --data-dir="$data_dir"

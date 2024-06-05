@@ -67,7 +67,35 @@ schemes:
     name: FillP-Sheep
     color: violet
     marker: 'D'
-  enhanced_aurora:
-    name: Enhanced Aurora
+  aurora_udt:
+    name: Aurora-UDT
+    color: indigo
+    marker: 'D'
+  aqmss:
+    name: AQMSS
     color: red
+    marker: 'D'
+  aqmss_ns3_ori:
+    name: AQMSS-NS3-ORI
+    color: tan
+    marker: 'D'
+  aqmss_ns3_lin:
+    name: AQMSS-NS3-LIN
+    color: orange
+    marker: 'D'
+  aqmss_ns3_lin_inhouse:
+    name: AQMSS-NS3-LIN-INHOUSE
+    color: violet
+    marker: 'D'
+  aqmss_ns3_exp:
+    name: AQMSS-NS3-EXP
+    color: yellow
+    marker: 'D'
+  aqmss_ns3_bool:
+    name: AQMSS-NS3-BOOL
+    color: green
+    marker: 'D'
+  aqmss_ns3_fct:
+    name: AQMSS-NS3-FCT
+    color: blue
     marker: 'D'
